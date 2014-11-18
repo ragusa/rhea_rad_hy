@@ -1,0 +1,42 @@
+#include "RheaApp.h"
+#include "Moose.h"
+#include "AppFactory.h"
+
+template<>
+InputParameters validParams<RadhyApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+  return params;
+}
+
+RheaApp::RheaApp(const std::string & name, InputParameters parameters) :
+    MooseApp(name, parameters)
+{
+  srand(processor_id());
+
+  Moose::registerObjects(_factory);
+  RheaApp::registerObjects(_factory);
+
+  Moose::associateSyntax(_syntax, _action_factory);
+  RheaApp::associateSyntax(_syntax, _action_factory);
+}
+
+RheaApp::~RheaApp()
+{
+}
+
+void
+RheaApp::registerApps()
+{
+  registerApp(RheaApp);
+}
+
+void
+RheaApp::registerObjects(Factory & factory)
+{
+}
+
+void
+RheaApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+}

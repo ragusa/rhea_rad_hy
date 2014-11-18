@@ -1,11 +1,12 @@
-#include "RadhyApp.h"
+#include "RheaApp.h"
+//Moose Includes
 #include "MooseInit.h"
 #include "Moose.h"
 #include "MooseApp.h"
 #include "AppFactory.h"
 
 // Create a performance log
-PerfLog Moose::perf_log("Radhy");
+PerfLog Moose::perf_log("Radhy (rhea)");
 
 // Begin the main program.
 int main(int argc, char *argv[])
@@ -14,10 +15,10 @@ int main(int argc, char *argv[])
   MooseInit init(argc, argv);
 
   // Register this application's MooseApp and any it depends on
-  RadhyApp::registerApps();
+  RheaApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
-  MooseApp * app = AppFactory::createApp("RadhyApp", argc, argv);
+  MooseApp * app = AppFactory::createApp("RheaApp", argc, argv);
 
   app->legacyUoInitializationDefault() = false;
   app->legacyUoAuxComputationDefault() = false;
